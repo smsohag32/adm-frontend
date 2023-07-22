@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.adm-container{
+  @apply max-w-[2520px] mx-auto xl:px-20 md:px-10 sm:px-2 px-4
+}
+
+.simple-text{
+  @apply bg-white px-4 py-4 shadow-sm text-sm my-2
+}
+
+.active-link{
+  @apply text-primary font-semibold text-sm uppercase
+}
+
+.primary-link{
+  @apply font-semibold text-sm uppercase
+}
