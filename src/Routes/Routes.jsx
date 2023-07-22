@@ -3,6 +3,9 @@ import MainLayouts from "../Layouts/MainLayouts";
 import Home from "../Pages/Home/Home/Home";
 import CollegeInfo from "../Pages/CollegeInfo/CollegeInfo";
 import AllColleges from "../Pages/AllColleges/AllColleges";
+import PrivateRoute from "./PrivateRoute";
+import Login from "../Pages/Login/Login";
+import Register from "../Pages/Register.jsx/Register";
 
 const router = createBrowserRouter([
   {
@@ -19,7 +22,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/colleges/:id",
-        element: <CollegeInfo />,
+        element: (
+          <PrivateRoute>
+            <CollegeInfo />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/register",
+        element: <Register />,
       },
     ],
   },

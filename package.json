@@ -13,13 +13,16 @@
     "@headlessui/react": "^1.7.15",
     "@tanstack/react-query": "^4.32.0",
     "axios": "^1.4.0",
+    "firebase": "^10.1.0",
     "lottie-react": "^2.4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-helmet": "^6.1.0",
     "react-hook-form": "^7.45.2",
     "react-icons": "^4.10.1",
-    "react-router-dom": "^6.14.2"
+    "react-loader-spinner": "^5.3.4",
+    "react-router-dom": "^6.14.2",
+    "react-spinners": "^0.13.8"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
