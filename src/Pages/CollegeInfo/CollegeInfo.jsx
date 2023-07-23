@@ -1,10 +1,13 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import PageTitle from "../../components/PageTitle/PageTitle";
+import Spinner from "../../components/Spinner/Spinner";
+import useAdmissionFrom from "../../Hooks/useAdmissionFrom";
 
 const CollegeInfo = () => {
   const { id } = useParams();
+  const { handleAdmissionForm } = useAdmissionFrom();
   const [loading, setLoading] = useState(false);
   const [college, setCollege] = useState([]);
   useEffect(() => {
@@ -20,9 +23,8 @@ const CollegeInfo = () => {
       });
   }, [id]);
 
-  console.log(loading, college);
   if (loading) {
-    return <p>loading</p>;
+    return <Spinner />;
   }
   return (
     <div className="bg-gray-50">
@@ -51,12 +53,12 @@ const CollegeInfo = () => {
             <span className="text-primary">Sports category: </span>
             {college?.sports_category}
           </p>
-          <Link
+          <button
             className="btn btn-primary btn-sm btn-outline"
-            to={`/admission/${college?._id}`}
+            onClick={() => handleAdmissionForm(college?._id)}
           >
             Admission now
-          </Link>
+          </button>
         </div>
       </div>
     </div>

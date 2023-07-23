@@ -4,7 +4,7 @@ import heroImage from "../../assets/animation/admission.json";
 const Hero = () => {
   return (
     <div className="flex items-center justify-between bg-gray-100 min-h-[100vh] pt-16">
-      <div className="adm-container flex gap-4 items-center">
+      <div className="adm-container flex flex-col md:flex-row gap-4 items-center">
         <div className="flex flex-col w-full ">
           <h1 className="font-bold text-2xl text-gray-900">
             Welcome to <span>ADM</span> Admission

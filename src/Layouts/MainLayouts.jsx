@@ -1,14 +1,19 @@
 import { Outlet } from "react-router-dom";
 import Header from "../components/shared/Header/Header";
+import AdmissionProvider from "../context/AdmissionProvider";
+import Footer from "../components/shared/Footer/Footer";
 
 const MainLayouts = () => {
   return (
-    <div>
-      <Header />
+    <AdmissionProvider>
       <div>
-        <Outlet />
+        <Header />
+        <div>
+          <Outlet />
+        </div>
+        <Footer />
       </div>
-    </div>
+    </AdmissionProvider>
   );
 };
 

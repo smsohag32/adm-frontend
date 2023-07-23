@@ -7,6 +7,8 @@ const userSave = async(user)=>{
         name: user.displayName,
         email: user.email,
         image: user.photoURL,
+        university: '',
+        address: ''
     }
     const res = await axios.put(`http://localhost:5000/users/${email}`, userInfo);
     const data = res.data;

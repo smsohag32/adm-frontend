@@ -1,6 +1,11 @@
 import { Link, NavLink } from "react-router-dom";
+import useAuth from "../../../Hooks/useAuth";
 
 const Header = () => {
+  const { user, logOut } = useAuth();
+  const handleLogout = () => {
+    logOut();
+  };
   const navLink = (
     <>
       <li>
@@ -38,17 +43,50 @@ const Header = () => {
           className={({ isActive }) =>
             isActive ? "active-link" : "primary-link"
           }
-          to="/my-collage"
+          to="/my-college"
         >
-          My Collages
+          My College
         </NavLink>
       </li>
+      {user ? (
+        <span className="dropdown hidden md:block dropdown-end">
+          <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+            <div className="w-10 rounded-full">
+              <img src={user?.photoURL} alt="user" />
+            </div>
+          </label>
+          <ul
+            tabIndex={0}
+            className="mt-4 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 hidden md:block rounded-box w-52"
+          >
+            <li>
+              <Link to="/account" className="justify-between">
+                Profile
+              </Link>
+            </li>
+            <li>
+              <button onClick={handleLogout}>Logout</button>
+            </li>
+          </ul>
+        </span>
+      ) : (
+        <li>
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? "active-link" : "primary-link"
+            }
+            to="/login"
+          >
+            Login
+          </NavLink>
+        </li>
+      )}
     </>
   );
   return (
     <div className="fixed z-20 top-0 left-0 right-0 h-16 flex items-center drop-shadow-lg">
       <div className="navbar bg-base-100 adm-container">
-        <div className="navbar-start ">
+        <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
               <svg
@@ -68,7 +106,7 @@ const Header = () => {
             </label>
             <ul
               tabIndex={0}
-              className="menu menu-lg dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box"
+              className="menu menu-lg items-center dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box"
             >
               {navLink}
             </ul>
@@ -110,8 +148,32 @@ const Header = () => {
             </div>
           </div>
         </div>
+
+        {/* md hidden */}
+        <span className="dropdown ms-2 md:hidden dropdown-end">
+          <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+            <div className="w-10 rounded-full">
+              <img src={user?.photoURL} alt="user" />
+            </div>
+          </label>
+          <ul
+            tabIndex={0}
+            className="mt-4 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
+          >
+            <li>
+              <Link to="/account" className="justify-between">
+                Profile
+              </Link>
+            </li>
+            <li>
+              <button onClick={handleLogout}>Logout</button>
+            </li>
+          </ul>
+        </span>
         <div className="navbar-end hidden w-full lg:flex">
-          <ul className="menu menu-horizontal px-1">{navLink}</ul>
+          <ul className="menu menu-horizontal px-1 items-center gap-1">
+            {navLink}
+          </ul>
         </div>
       </div>
     </div>
