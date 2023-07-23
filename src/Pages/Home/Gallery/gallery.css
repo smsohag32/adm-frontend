@@ -1,0 +1,4 @@
+
+.gallery img{
+    @apply hover:scale-x-105 transition-all duration-700 cursor-pointer
+}

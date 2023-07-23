@@ -1,6 +1,7 @@
 import { Helmet } from "react-helmet";
 import Hero from "../../../components/Hero/Hero";
 import Opportunity from "../Opportunity/Opportunity";
+import Gallery from "../Gallery/Gallery";
 
 const Home = () => {
   return (
@@ -10,6 +11,7 @@ const Home = () => {
       </Helmet> */}
       <Hero />
       <Opportunity />
+      <Gallery />
     </div>
   );
 };
