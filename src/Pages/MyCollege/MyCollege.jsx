@@ -12,8 +12,15 @@ const MyCollege = () => {
   }
 
   const { college, studentInfo } = myCollege;
-  const { college_name, admission_date } = college;
-
+  const {
+    college_name,
+    admission_date,
+    event_details,
+    rating,
+    research_history,
+    sports_category,
+  } = college;
+  console.log(college);
   return (
     <div className=" min-h-screen">
       <PageTitle currentPageTitle="My College" />
@@ -23,8 +30,24 @@ const MyCollege = () => {
             <h1 className="font-semibold text-xl mb-4">College Details</h1>
             <div>
               <div className="simple-text">
-                <span>Collage Name:</span>
+                <span className="text-primary">Collage Name:</span>
                 <p className="simple-text">{college_name}</p>
+              </div>
+              <div className="simple-text">
+                <span className="text-primary">Admission Date:</span>
+                <p className="simple-text">{admission_date}</p>
+              </div>
+              <div className="simple-text">
+                <span className="text-primary">Event:</span>
+                <p className="simple-text">{event_details}</p>
+              </div>
+              <div className="simple-text">
+                <span className="text-primary">Research History:</span>
+                {research_history.map((re, index) => (
+                  <p key={index} className="">
+                    {re}
+                  </p>
+                ))}
               </div>
             </div>
           </div>
