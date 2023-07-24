@@ -25,7 +25,6 @@ const MyCollege = () => {
     college_name,
     admission_date,
     event_details,
-    rating,
     research_history,
     sports_category,
   } = college;
