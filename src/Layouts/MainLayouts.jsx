@@ -2,18 +2,21 @@ import { Outlet } from "react-router-dom";
 import Header from "../components/shared/Header/Header";
 import AdmissionProvider from "../context/AdmissionProvider";
 import Footer from "../components/shared/Footer/Footer";
+import SearchDataProvider from "../context/SearchDataProvider";
 
 const MainLayouts = () => {
   return (
-    <AdmissionProvider>
-      <div>
-        <Header />
+    <SearchDataProvider>
+      <AdmissionProvider>
         <div>
-          <Outlet />
+          <Header />
+          <div>
+            <Outlet />
+          </div>
+          <Footer />
         </div>
-        <Footer />
-      </div>
-    </AdmissionProvider>
+      </AdmissionProvider>
+    </SearchDataProvider>
   );
 };
 

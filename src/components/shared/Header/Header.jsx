@@ -1,11 +1,42 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../../Hooks/useAuth";
+import { useContext, useState } from "react";
+import axios from "axios";
+import { SearchContext } from "../../../context/SearchDataProvider";
 
 const Header = () => {
+  const { setSearchData, setLoading } = useContext(SearchContext);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [text, setText] = useState("");
   const { user, logOut } = useAuth();
   const handleLogout = () => {
     logOut();
   };
+
+  // handle to college search
+  const handleSearch = () => {
+    if (!text) {
+      return;
+    }
+    if (!(location.pathname === "search")) {
+      navigate("/search");
+    }
+    if (text.length > 0) {
+      setLoading(true);
+      axios
+        .get(`http://localhost:5000/search/${text}`)
+        .then((data) => {
+          setSearchData(data.data);
+          setLoading(false);
+        })
+        .catch((err) => {
+          setLoading(false);
+        });
+    }
+  };
+
+  // nav item
   const navLink = (
     <>
       <li>
@@ -137,12 +168,17 @@ const Header = () => {
               </div>
               <input
                 type="search"
+                onChange={(e) => setText(e.target.value)}
                 id="default-search"
                 className="block w-full py-2 px-4 pl-10 text-sm text-gray-900 rounded-none border-gray-100 border outline-none bg-gray-50"
                 placeholder="Search collage..."
                 required
               />
-              <button type="submit" className="btn btn-sm btn-primary">
+              <button
+                type="button"
+                onClick={handleSearch}
+                className="btn btn-sm btn-primary"
+              >
                 Search
               </button>
             </div>
