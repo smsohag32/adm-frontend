@@ -9,7 +9,7 @@ const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [text, setText] = useState("");
-  const { user, logOut } = useAuth();
+  const { user, logOut, loading } = useAuth();
   const handleLogout = () => {
     logOut();
   };
@@ -79,6 +79,7 @@ const Header = () => {
           My College
         </NavLink>
       </li>
+
       {user ? (
         <span className="dropdown hidden md:block dropdown-end">
           <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
@@ -102,14 +103,18 @@ const Header = () => {
         </span>
       ) : (
         <li>
-          <NavLink
-            className={({ isActive }) =>
-              isActive ? "active-link" : "primary-link"
-            }
-            to="/login"
-          >
-            Login
-          </NavLink>
+          {loading ? (
+            "Loading"
+          ) : (
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? "active-link" : "primary-link"
+              }
+              to="/login"
+            >
+              Login
+            </NavLink>
+          )}
         </li>
       )}
     </>

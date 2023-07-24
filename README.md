@@ -16,7 +16,7 @@ Welcome to the ADM (Admission) Website! This platform is designed to simplify th
 
 ## Demo
 
-Experience the power of ADM with our live demo [here](https://your-adm-website-demo.com).
+Experience the power of ADM with our live demo [here](https://adm-app-20482.web.app/).
 
 ## Features
 
