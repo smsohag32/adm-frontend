@@ -1,8 +1,8 @@
-import { Helmet } from "react-helmet";
 import Hero from "../../../components/Hero/Hero";
 import Opportunity from "../Opportunity/Opportunity";
 import Gallery from "../Gallery/Gallery";
 import Reviews from "../Reviews/Reviews";
+import ResearchPaper from "../ResearchPaper/ResearchPaper";
 
 const Home = () => {
   return (
@@ -10,6 +10,7 @@ const Home = () => {
       <Hero />
       <Opportunity />
       <Gallery />
+      <ResearchPaper />
       <Reviews />
     </div>
   );
