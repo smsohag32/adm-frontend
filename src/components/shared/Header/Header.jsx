@@ -117,7 +117,7 @@ const Header = () => {
   return (
     <div className="fixed z-20 top-0 left-0 right-0 h-16 flex items-center drop-shadow-lg">
       <div className="navbar bg-base-100 adm-container">
-        <div className="navbar-start">
+        <div className="navbar-start w-auto mr-6">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
               <svg
@@ -186,26 +186,40 @@ const Header = () => {
         </div>
 
         {/* md hidden */}
-        <span className="dropdown ms-2 md:hidden dropdown-end">
-          <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-            <div className="w-10 rounded-full">
-              <img src={user?.photoURL} alt="user" />
-            </div>
-          </label>
-          <ul
-            tabIndex={0}
-            className="mt-4 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
-          >
-            <li>
-              <Link to="/account" className="justify-between">
-                Profile
-              </Link>
-            </li>
-            <li>
-              <button onClick={handleLogout}>Logout</button>
-            </li>
-          </ul>
-        </span>
+        {user && (
+          <span className="dropdown ms-2 md:hidden dropdown-end">
+            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+              <div className="w-10 rounded-full">
+                <img src={user?.photoURL} alt="user" />
+              </div>
+            </label>
+            <ul
+              tabIndex={0}
+              className="mt-4 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
+            >
+              <li>
+                <Link to="/account" className="justify-between">
+                  Profile
+                </Link>
+              </li>
+              <li>
+                <button onClick={handleLogout}>Logout</button>
+              </li>
+            </ul>
+          </span>
+        )}
+        {!user && (
+          <li className="md:hidden items-end text-end ms-5">
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? "active-link" : "primary-link"
+              }
+              to="/login"
+            >
+              Login
+            </NavLink>
+          </li>
+        )}
         <div className="navbar-end hidden w-full lg:flex">
           <ul className="menu menu-horizontal px-1 items-center gap-1">
             {navLink}

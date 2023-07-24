@@ -6,28 +6,20 @@ import Spinner from "../../components/Spinner/Spinner";
 import Swal from "sweetalert2";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
+import { Link } from "react-router-dom";
 
 const MyCollege = () => {
   const { myCollege, cLoading } = useMyCollege();
   const { loading, user } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
-
+  if (cLoading || loading) {
+    return <Spinner />;
+  }
   const closeModal = () => {
     setIsOpen(false);
   };
 
-  if (cLoading || loading) {
-    return <Spinner />;
-  }
-
   const { college, studentInfo } = myCollege;
-  const {
-    college_name,
-    admission_date,
-    event_details,
-    research_history,
-    sports_category,
-  } = college;
 
   const handleReview = (e) => {
     e.preventDefault();
@@ -37,7 +29,7 @@ const MyCollege = () => {
       student_name: user?.displayName,
       student_image: user?.photoURL,
       review: review,
-      college_name: college_name,
+      college_name: college?.college_name,
     };
 
     axios
@@ -55,6 +47,7 @@ const MyCollege = () => {
       })
       .catch((err) => {});
   };
+
   return (
     <div className=" min-h-screen">
       <PageTitle currentPageTitle="My College" />
@@ -65,23 +58,23 @@ const MyCollege = () => {
             <div>
               <div className="simple-text">
                 <span className="text-primary">Collage Name:</span>
-                <p className="simple-text">{college_name}</p>
+                <p className="simple-text">{college?.college_name}</p>
               </div>
               <div className="simple-text">
                 <span className="text-primary">Admission Date:</span>
-                <p className="simple-text">{admission_date}</p>
+                <p className="simple-text">{college?.admission_date}</p>
               </div>
               <div className="simple-text">
                 <span className="text-primary">Event:</span>
-                <p className="simple-text">{event_details}</p>
+                <p className="simple-text">{college?.event_details}</p>
               </div>
               <div className="simple-text">
                 <span className="text-primary">Sports:</span>
-                <p className="simple-text">{sports_category}</p>
+                <p className="simple-text">{college?.sports_category}</p>
               </div>
               <div className="simple-text">
                 <span className="text-primary">Research History:</span>
-                {research_history.map((re, index) => (
+                {college?.research_history.map((re, index) => (
                   <p key={index} className="">
                     {re}
                   </p>
@@ -97,14 +90,25 @@ const MyCollege = () => {
               <p className="simple-text">{studentInfo?.phone_number}</p>
               <p className="simple-text">{studentInfo?.address}</p>
               <p className="simple-text">{studentInfo?.subject}</p>
-              <div className="mt-auto">
-                <button
-                  className="btn btn-outline btn-md btn-primary"
-                  onClick={() => setIsOpen(true)}
-                >
-                  Review
-                </button>
-              </div>
+              {college ? (
+                <div className="mt-auto">
+                  <button
+                    className="btn btn-outline btn-md btn-primary"
+                    onClick={() => setIsOpen(true)}
+                  >
+                    Review
+                  </button>
+                </div>
+              ) : (
+                <div className="mt-auto">
+                  <Link
+                    to="/admission"
+                    className="btn btn-outline btn-md btn-primary"
+                  >
+                    You are not admitted anywhere so, admission now
+                  </Link>
+                </div>
+              )}
             </div>
           </div>
         </div>
