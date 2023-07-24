@@ -25,7 +25,7 @@ const Reviews = () => {
             }}
             navigation={true}
             autoplay={{
-              delay: 2500,
+              delay: 5500,
               disableOnInteraction: false,
             }}
             modules={[Pagination, Navigation, Autoplay]}
@@ -33,7 +33,24 @@ const Reviews = () => {
           >
             {reviewsData?.length > 0 ? (
               reviewsData.map((review) => (
-                <SwiperSlide key={review?._id}></SwiperSlide>
+                <SwiperSlide key={review?._id}>
+                  <div className="flex flex-col items-center">
+                    <div className="w-32 h-32">
+                      <img
+                        className="object-cover rounded-full"
+                        src={review?.student_image}
+                        alt={review.student_name}
+                      />
+                    </div>
+                    <p className="text-xl font-semibold">
+                      {review?.student_name}
+                    </p>
+                    <p className="text-lg text-primary mt-2">
+                      {review?.college_name}
+                    </p>
+                    <p className="max-w-xl px-6 md:px-2">{review?.review}</p>
+                  </div>
+                </SwiperSlide>
               ))
             ) : (
               <SwiperSlide>
