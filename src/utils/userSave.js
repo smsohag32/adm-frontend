@@ -10,7 +10,7 @@ const userSave = async(user)=>{
         university: '',
         address: ''
     }
-    const res = await axios.put(`http://localhost:5000/users/${email}`, userInfo);
+    const res = await axios.put(`https://adm-backend.vercel.app/users/${email}`, userInfo);
     const data = res.data;
     return data;
 }

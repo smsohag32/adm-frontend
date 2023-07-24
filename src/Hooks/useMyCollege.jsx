@@ -13,7 +13,7 @@ const useMyCollege = () => {
     enabled: !loading,
     queryFn: async () => {
       const res = await axios.get(
-        `http://localhost:5000/admission/${user?.email}`
+        `https://adm-backend.vercel.app/admission/${user?.email}`
       );
       return res.data;
     },

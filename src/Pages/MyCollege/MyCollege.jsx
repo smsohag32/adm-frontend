@@ -42,7 +42,7 @@ const MyCollege = () => {
     };
 
     axios
-      .post(`http://localhost:5000/reviews`, reviewInfo)
+      .post(`https://adm-backend.vercel.app/reviews`, reviewInfo)
       .then((data) => {
         Swal.fire({
           position: "top-end",

@@ -13,7 +13,7 @@ const CollegeInfo = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`http://localhost:5000/colleges/${id}`)
+      .get(`https://adm-backend.vercel.app/colleges/${id}`)
       .then((data) => {
         setLoading(false);
         setCollege(data.data);
@@ -38,11 +38,15 @@ const CollegeInfo = () => {
         <div className="w-full">
           <h3 className="simple-text">{college?.college_name}</h3>
           <p className="bg-white px-4 py-4 shadow-sm text-sm my-2">
-            <span className="text-primary">Admission process</span>:{" "}
+            <span className="text-primary">Admission process: </span>
             {college?.admission_process?.detailed_process}
           </p>
+          <p className="bg-white px-4 py-4 shadow-sm text-sm my-2">
+            <span className="text-primary">Event: </span>
+            {college?.event_details}
+          </p>
           <ul className="simple-text">
-            <span>History</span>
+            <span className="text-primary">History</span>
             {college?.research_history?.map((rh, index) => (
               <li key={index} className="">
                 {index + 1}. {rh}

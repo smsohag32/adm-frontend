@@ -3,7 +3,6 @@ import useAuth from "../../Hooks/useAuth";
 import useUser from "../../Hooks/useUser";
 import Spinner from "../../components/Spinner/Spinner";
 import uploadImage from "../../utils/uploadImage";
-import userSave from "../../utils/userSave";
 import { useState } from "react";
 import axios from "axios";
 
@@ -41,7 +40,10 @@ const Account = () => {
           };
           // user log out
           axios
-            .put(`http://localhost:5000/users/${user?.email}`, updatedInfo)
+            .put(
+              `https://adm-backend.vercel.app/users/${user?.email}`,
+              updatedInfo
+            )
             .then((data) => {
               setIsUpdate(false);
               refetch();

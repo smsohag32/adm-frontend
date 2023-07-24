@@ -44,7 +44,10 @@ const AdmissionFrom = () => {
           studentInfo,
         };
         axios
-          .put(`http://localhost:5000/admission/${user?.email}`, newAdmission)
+          .put(
+            `https://adm-backend.vercel.app/admission/${user?.email}`,
+            newAdmission
+          )
           .then((data) => {
             Swal.fire({
               position: "top-end",
@@ -68,7 +71,7 @@ const AdmissionFrom = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`http://localhost:5000/colleges/${id}`)
+      .get(`https://adm-backend.vercel.app/colleges/${id}`)
       .then((data) => {
         setLoading(false);
         console.log(data);

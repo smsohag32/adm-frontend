@@ -25,7 +25,7 @@ const Header = () => {
     if (text.length > 0) {
       setLoading(true);
       axios
-        .get(`http://localhost:5000/search/${text}`)
+        .get(`https://adm-backend.vercel.app/search/${text}`)
         .then((data) => {
           setSearchData(data.data);
           setLoading(false);

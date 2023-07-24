@@ -9,7 +9,7 @@ const useReviews = () => {
   } = useQuery({
     queryKey: ["reviewsData"],
     queryFn: async () => {
-      const res = await axios.get(`http://localhost:5000/reviews`);
+      const res = await axios.get(`https://adm-backend.vercel.app/reviews`);
       return res.data;
     },
   });

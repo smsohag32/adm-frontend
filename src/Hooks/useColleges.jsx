@@ -9,7 +9,7 @@ const useColleges = () => {
   } = useQuery({
     queryKey: ["colleges"],
     queryFn: async () => {
-      const res = await axios.get(`http://localhost:5000/colleges`);
+      const res = await axios.get(`https://adm-backend.vercel.app/colleges`);
       return res.data;
     },
   });
